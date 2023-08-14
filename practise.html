@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>game</title>
+    <style type="text/css">
+        *{
+
+            margin:0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        body{
+
+        }
+        #game{
+            position: ;
+            background-image: url(hh.jpg);
+            background-size: cover;
+            width: 600px;
+            height:550px;
+            overflow: hidden;
+        }
+
+        #blocker{
+    display: none;
+    position: absolute;
+            top: 150px;
+            left:600px ;
+            
+}
+#blocker img{
+    
+    width: 262px;
+            height: auto;
+
+            
+}
+
+#frist{
+    display: none;
+    position: absolute;
+            top: 150px;
+            left:600px ;
+            
+}
+#frist img{
+    
+    width: 212px;
+            height: auto;
+
+            
+}
+
+.fristcss{
+            animation: 6s qove linear infinite;
+        }
+
+
+        @keyframes qove{
+0%{
+left:600px ;
+
+
+}
+100%{
+
+    left:-200px ;
+}
+
+}
+
+
+
+
+
+
+
+
+        
+
+        #flyer{
+            position: absolute;
+            top: 150px;
+            left:600px ;
+            
+            
+        }
+        #flyer img{
+width: 222px;
+            height: auto;
+
+        }
+        .flyercss{
+            animation: 6s move linear infinite;
+        }
+        @keyframes move{
+0%{
+left:600px ;
+
+
+}
+100%{
+
+    left:-200px ;
+}
+
+
+        }
+        #nityam {
+position: absolute;
+top:150px;
+    width: 222px;
+
+            
+        }
+
+        #nityam img{
+
+    width: 211px;
+            height: auto;
+        }
+
+.bullet{
+
+position: absolute;
+top:150px;
+
+width: 222px;
+            height: auto;
+animation:  king 1s linear 1 forwards;
+
+}
+@keyframes king{
+0%{
+left: 65px;
+}
+100%{
+    left: 1665px;
+}
+}
+
+.bulletimg{
+
+width: 112px;
+            height: auto;
+
+
+}
+
+
+
+.blockercss{
+            animation: 6s dove linear infinite;
+        }
+        @keyframes dove{
+0%{
+left:600px ;
+
+
+}
+100%{
+
+    left:-200px ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+<div id="game">
+    <div><img src=""></div>
+    <div id="flyer"><img src="https://www.animatedimages.org/data/media/574/animated-monster-image-0117.gif"></div>
+<div id="nityam"><img src="thor.png"></div>
+
+<div id="blocker"><img src="https://www.animatedimages.org/data/media/130/animated-devil-image-0280.gif"></div>
+<div id="frist"><img src="https://www.animatedimages.org/data/media/130/animated-devil-image-0246.gif"></div>
+<div id="second"><img src="https://www.animatedimages.org/data/media/130/animated-devil-image-0246.gif"></div>
+</div>
+<button id="fire">FIRE</button>
+<button id="left">left</button>
+<button id="right">right</button>
+<a href="index.html">ss</a>
+<script type="text/javascript">
+    var counter=0;
+    var counterz=0;
+    
+    var link;
+    var linksecond;
+    var n;
+    var v;
+    var second=document.getElementById("frist");
+    var frist=document.getElementById("frist");
+    var blocker=document.getElementById("blocker");
+    var right=document.getElementById("right");
+    var left=document.getElementById("left");
+    var game=document.getElementById("game");
+    var fire=document.getElementById("fire");
+    var flyer=document.getElementById("flyer");
+var nityam=document.getElementById("nityam");
+var b;
+
+
+
+
+
+
+left.addEventListener("click",function(){
+var you=parseInt(window.getComputedStyle(nityam).getPropertyValue("top"))
+
+if (you<222) {
+nityam.style.top=(you+150)+"px"
+}
+
+
+})
+right.addEventListener("click",function(){
+var you=parseInt(window.getComputedStyle(nityam).getPropertyValue("top"))
+
+if (you>0) {
+nityam.style.top=(you-150)+"px"
+}
+})
+fire.addEventListener("click",function(){
+ b=document.createElement("div")
+var c=document.createElement("img")
+c.src="hammer.png"
+b.classList.add("bullet")
+c.classList.add("bulletimg")
+b.style.top=nityam.style.top
+b.appendChild(c);
+game.appendChild(b);
+
+
+})
+
+function broke(){
+var btop=parseInt(window.getComputedStyle(b).getPropertyValue("top"))
+var flyertop=parseInt(window.getComputedStyle(flyer).getPropertyValue("top"))
+
+
+
+if (btop==flyertop) {
+    flyer.style.display="none"
+}
+} setInterval(broke,10);
+
+    function show(){
+
+
+
+
+    flyer.style.display="block"
+    
+var a=(Math.floor(Math.random()*3)*150)
+
+flyer.style.top=(a)+"px"
+flyer.classList.add("flyercss");
+counter++;
+
+} 
+
+var g=setInterval(show,6000);
+//most important thing reme
+
+    //
+ 
+//
+function gameOver() {
+    var flyerright = parseInt(window.getComputedStyle(flyer).getPropertyValue("right"));
+    if (flyerright> 1260) {
+        alert(counter)
+        game.style.display = 'none';
+        
+    }
+}
+
+setInterval(gameOver, 10);
+function fun(){
+var btop=parseInt(window.getComputedStyle(b).getPropertyValue("top"))
+var blockertop=parseInt(window.getComputedStyle(blocker).getPropertyValue("top"))
+
+
+
+if (btop==blockertop) {
+    blocker.style.display="none"
+}
+} setInterval(fun,10);
+
+function level(){
+
+
+    if (counter==2) {
+        clearInterval(g);
+flyer.style.display="none"
+blocker.style.display="block"
+var ab=(Math.floor(Math.random()*3)*150)
+
+blocker.style.top=(ab)+"px"
+blocker.classList.add("blockercss");
+console.log(counter);
+counterz++
+
+    }
+}
+
+var h=setInterval(level, 6000);
+
+
+
+function gameOvers() {
+    var blockerright = parseInt(window.getComputedStyle(blocker).getPropertyValue("right"));
+    if (blockerright>1160) {
+        
+        
+        game.style.display = 'none';
+        
+    }
+}
+
+setInterval(gameOvers, 10);
+
+
+
+
+
+
+
+
+
+function levelest(){
+
+link=counter+counterz;
+    if (link===4) {
+
+        clearInterval(h);
+        
+        
+        blocker.style.display="none"
+frist.style.display="block"
+var a=(Math.floor(Math.random()*3)*150)
+
+frist.style.top=(a)+"px"
+frist.classList.add("fristcss");
+console.log("blocker"+link)
+n++
+
+    }
+}
+
+var i=setInterval(levelest,6000);
+
+
+function funfrist(){
+var btop=parseInt(window.getComputedStyle(b).getPropertyValue("top"))
+var fristtop=parseInt(window.getComputedStyle(frist).getPropertyValue("top"))
+
+
+
+if (btop==fristtop) {
+    frist.style.display="none"
+}
+} setInterval(funfrist,10);
+
+
+
+function gameOverfrist() {
+    var fristright = parseInt(window.getComputedStyle(frist).getPropertyValue("right"));
+    if (fristright>1260) {
+        
+        
+        game.style.display = 'none';
+        
+    }
+}
+
+setInterval(gameOverfrist, 10);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function levelsecond(){
+
+linksecond=n+counterz+counter;
+    if (link==6) {
+
+        clearInterval(i);
+        
+        
+        blocker.style.display="none"
+frist.style.display="block"
+var a=(Math.floor(Math.random()*3)*150)
+
+second.style.top=(a)+"px"
+second.classList.add("secondcss");
+console.log("n"+n)
+console.log("linksecond"+linksecond)
+
+    }
+}
+
+setInterval(levelsecond,6000);
+
+
+function funsecond(){
+var btop=parseInt(window.getComputedStyle(b).getPropertyValue("top"))
+var secondtop=parseInt(window.getComputedStyle(second).getPropertyValue("top"))
+
+
+
+if (btop==secondtop) {
+    second.style.display="none"
+}
+} setInterval(funsecond,10);
+
+
+
+function gameOversecond() {
+    var secondright = parseInt(window.getComputedStyle(second).getPropertyValue("right"));
+    if (secondright>1260) {
+        
+        
+        game.style.display = 'none';
+        
+    }
+}
+
+setInterval(gameOversecond, 10);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

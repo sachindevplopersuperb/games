@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>game</title>
+	<style type="text/css">
+		* {
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+		}
+		body {
+			/* Additional body styles if needed */
+		}
+		body {
+		}
+		#game {
+			position: relative;
+			background-image: url(space.jpg);
+			width: 600px;
+			height: 550px;
+			overflow: hidden;
+		}
+		#flyer {
+			position: absolute;
+			top: 150px;
+			left: 600px;
+		}
+		#flyer img {
+			width: 222px;
+			height: auto;
+		}
+		.flyercss {
+			animation: 1s move linear infinite;
+		}
+		@keyframes move {
+			0% {
+				left: 600px;
+			}
+			100% {
+				left: -200px;
+			}
+		}
+		#nityam {
+			position: absolute;
+			top: 150px;
+			width: 222px;
+		}
+		#nityam img {
+			width: 222px;
+			height: auto;
+		}
+		.bullet {
+			position: absolute;
+			top: 150px;
+			width: 222px;
+			height: auto;
+			animation: king 1s linear 1 forwards;
+		}
+		@keyframes king {
+			0% {
+				left: 65px;
+			}
+			100% {
+				left: 1665px;
+			}
+		}
+		.bulletimg {
+			width: 122px;
+			height: 222px;
+		}
+	</style>
+</head>
+<body>
+<div id="game">
+	<div id="flyer"><img src="https://www.animatedimages.org/data/media/72/animated-helicopter-image-0005.gif"></div>
+	<div id="nityam"><img src="nityam.png"></div>
+</div>
+<button id="fire">FIRE</button>
+<button id="left">left</button>
+<button id="right">right</button>
+<a href="index.html">ss</a>
+<script type="text/javascript">
+	var right = document.getElementById("right");
+	var left = document.getElementById("left");
+	var game = document.getElementById("game");
+	var fire = document.getElementById("fire");
+	var flyer = document.getElementById("flyer");
+	var counter = 0;
+	var nityam = document.getElementById("nityam");
+	var b;
+
+	left.addEventListener("click", function() {
+		var you = parseInt(window.getComputedStyle(nityam).getPropertyValue("top"));
+		if (you < 222) {
+			nityam.style.top = (you + 150) + "px";
+		}
+	});
+
+	right.addEventListener("click", function() {
+		var you = parseInt(window.getComputedStyle(nityam).getPropertyValue("top"));
+		if (you > 0) {
+			nityam.style.top = (you - 150) + "px";
+		}
+	});
+
+	fire.addEventListener("click", function() {
+		b = document.createElement("div");
+		var c = document.createElement("img");
+		c.src = "qw.png";
+		b.classList.add("bullet");
+		c.classList.add("bulletimg");
+		b.style.top = nityam.style.top;
+		b.appendChild(c);
+		game.appendChild(b);
+	});
+
+	function broke() {
+		var btop = parseInt(window.getComputedStyle(b).getPropertyValue("top"));
+		var flyertop = parseInt(window.getComputedStyle(flyer).getPropertyValue("top"));
+		if (btop == flyertop) {
+			flyer.style.display = "none";
+			gameover();
+		}
+	}
+	setInterval(broke, 100);
+
+	function show() {
+		flyer.style.display = "block";
+		var a = (Math.floor(Math.random() * 3) * 150);
+		flyer.style.top = a + "px";
+		flyer.classList.add("flyercss");
+		counter++;
+		console.log(counter);
+	}
+	setInterval(show, 1000);
+
+	function gameover() {
+		alert("Game Over!"); // Customize this as needed
+		// Additional actions for game over
+	}
+</script>
+</body>
+</html>
